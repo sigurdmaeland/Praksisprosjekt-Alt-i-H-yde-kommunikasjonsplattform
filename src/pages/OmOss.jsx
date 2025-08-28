@@ -16,7 +16,7 @@ const OmOss = () => {
       age: 22,
       background: "Erfaring med React, JavaScript, og frontend utvikling. Har jobbet med flere web-prosjekter og har solid bakgrunn innen moderne frontend-teknologier.",
       image: "/ole.png", // Du må legge til dette bildet
-      linkedin: "https://linkedin.com/in/olebjorkolsen",
+      linkedin: "https://www.linkedin.com/in/ole-bj%C3%B8rk-olsen-10a034365/",
       github: "https://github.com/oleols1"
     },
     {
