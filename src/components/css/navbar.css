@@ -141,7 +141,9 @@
   
   .navbar-logo {
     font-size: 1.5rem;
+    font-weight: 600;
     margin-left: 0;
+    line-height: 3.5;
   }
   
   /* Skjul hover-effekten på mobile */
@@ -284,5 +286,13 @@
   .hamburger {
     display: flex;
     z-index: 1000;
+  }
+}
+
+/* Ekstra små skjermer */
+@media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1.3rem;
+    letter-spacing: 0.13px;
   }
 }
