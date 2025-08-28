@@ -23,7 +23,7 @@ const OmOss = () => {
       name: "Jonas Løvik Jørgensen", // Endre dette
       age: 24,
       background: "Erfaring med backend utvikling, spesielt med Node.js og Express. Har jobbet med flere API-prosjekter.",
-      image: "/profile-medlem3.jpg", // Du må legge til dette bildet
+      image: "/jonas.png", // Du må legge til dette bildet
       linkedin: "https://www.linkedin.com/in/jonas-løvik-jørgensen-b1b013362/",
       github: "https://github.com/JonasLovik"
     }
