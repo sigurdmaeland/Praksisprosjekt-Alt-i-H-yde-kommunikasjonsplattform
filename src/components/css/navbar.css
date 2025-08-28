@@ -1,0 +1,200 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.navbar-logo {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  font-size: 2.2rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #E6A639, #D4941A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-left: 0.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-link {
+  color: #2d3748;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #E6A639, #D4941A);
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.navbar-link:hover {
+  color: #2C5282;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+/* Forskjellige farger for hver menyelement */
+.navbar-links .navbar-link:nth-child(1)::after {
+  background: linear-gradient(90deg, #E6A639, #D4941A);
+}
+
+.navbar-links .navbar-link:nth-child(2)::after {
+  background: linear-gradient(90deg, #2C5282, #4A90B8);
+}
+
+.navbar-links .navbar-link:nth-child(3)::after {
+  background: linear-gradient(90deg, #38A169, #68D391);
+}
+
+.navbar-links .navbar-link:nth-child(4)::after {
+  background: linear-gradient(90deg, #D53F8C, #F687B3);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 1rem;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  position: relative;
+  width: 36px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger:hover {
+  background: rgba(79, 142, 247, 0.1);
+}
+
+.hamburger span {
+  height: 3px;
+  width: 24px;
+  background: #4f8ef7;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hamburger span:nth-child(1) {
+  top: 9px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hamburger span:nth-child(3) {
+  bottom: 9px;
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.hamburger.active span:nth-child(3) {
+  bottom: auto;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-logo {
+    font-size: 1.5rem;
+    margin-left: 0;
+  }
+  
+  /* Skjul hover-effekten på mobile */
+  .navbar-link::after {
+    display: none;
+  }
+  
+  .navbar-link:hover::after {
+    display: none;
+  }
+  
+  .navbar-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(248, 249, 250, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    gap: 3rem;
+    padding: 0;
+  }
+  
+  .navbar-links.open {
+    display: flex;
+  }
+  
+  .navbar-links .navbar-link {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    text-align: center;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  /* Fjern alle hover-linje effekter på mobile */
+  .navbar-links .navbar-link::after {
+    display: none;
+  }
+  
+  .navbar-links .navbar-link:hover {
+    background: rgba(44, 82, 130, 0.1);
+    color: #2C5282;
+    transform: scale(1.05);
+  }
+  
+  .hamburger {
+    display: flex;
+    z-index: 1000;
+  }
+}

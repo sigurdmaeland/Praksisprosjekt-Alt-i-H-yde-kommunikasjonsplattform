@@ -1,0 +1,212 @@
+/* Om Oss page styles */
+.omoss-page {
+  min-height: calc(100vh - 160px);
+}
+
+.omoss-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.omoss-title {
+  color: #4A5D7A;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.omoss-subtitle {
+  color: #6B7A8F;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Team section */
+.team-section {
+  margin-top: 4rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Person cards */
+.person-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(44, 82, 130, 0.12);
+  border: 1px solid rgba(74, 144, 184, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.person-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2C5282, #4A90B8);
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.person-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(44, 82, 130, 0.18);
+}
+
+/* Profile image */
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  border: 4px solid #4A90B8;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.person-card:hover .profile-image {
+  transform: scale(1.05);
+}
+
+/* Person info */
+.person-name {
+  color: #2C5282;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.person-age {
+  color: #4A90B8;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.person-background {
+  background: rgba(74, 144, 184, 0.1);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.background-title {
+  color: #2C5282;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.background-text {
+  color: #4A90B8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #2C5282;
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.social-link:hover {
+  background: #4A90B8;
+  transform: scale(1.1);
+}
+
+.social-link.linkedin {
+  background: #0077b5;
+}
+
+.social-link.linkedin:hover {
+  background: #2C5282;
+}
+
+.social-link.github {
+  background: #333;
+}
+
+.social-link.github:hover {
+  background: #2C5282;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .omoss-title {
+    font-size: 2rem;
+  }
+  
+  .omoss-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .person-card {
+    padding: 1.5rem;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .person-name {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .omoss-title {
+    font-size: 1.8rem;
+  }
+  
+  .person-card {
+    padding: 1.2rem;
+  }
+  
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .social-links {
+    gap: 0.8rem;
+  }
+  
+  .social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
