@@ -8,14 +8,16 @@
 }
 
 .navbar-logo {
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 2.2rem;
   font-weight: 600;
-  background: linear-gradient(90deg, #E6A639, #D4941A);
+  background: linear-gradient(90deg, #303fc1, #E6A639);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-left: 0.5rem;
+  letter-spacing: 0.5px;
+  text-transform: none;
 }
 
 .navbar-links {
@@ -26,11 +28,14 @@
 .navbar-link {
   color: #2d3748;
   text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   transition: color 0.3s ease;
   position: relative;
   padding-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .navbar-link::after {
@@ -155,16 +160,28 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(248, 249, 250, 0.98);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(44, 82, 130, 0.95), rgba(74, 144, 184, 0.95));
+    backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     z-index: 999;
-    gap: 3rem;
+    gap: 2rem;
     padding: 0;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(20px);
+    }
   }
   
   .navbar-links.open {
@@ -172,25 +189,96 @@
   }
   
   .navbar-links .navbar-link {
-    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
     font-weight: 600;
-    color: #2d3748;
-    text-align: center;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    transition: all 0.3s ease;
+    color: #ffffff;
+    text-align: left;
+    padding: 1.5rem 0;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: none;
+    box-shadow: none;
+    width: 100%;
+    max-width: 300px;
+    text-decoration: none;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   
-  /* Fjern alle hover-linje effekter på mobile */
+  .navbar-links .navbar-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #E6A639, #D4941A);
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
   .navbar-links .navbar-link::after {
-    display: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(180deg, #E6A639, #D4941A);
+    transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
   }
   
   .navbar-links .navbar-link:hover {
-    background: rgba(44, 82, 130, 0.1);
-    color: #2C5282;
-    transform: scale(1.05);
+    background: transparent;
+    border-color: rgba(230, 166, 57, 0.3);
+    color: #E6A639;
+    transform: translateX(20px);
+    box-shadow: none;
+  }
+
+  .navbar-links .navbar-link:hover::before {
+    width: 100%;
+  }
+
+  .navbar-links .navbar-link:hover::after {
+    height: 100%;
+  }
+  
+  .navbar-links .navbar-link:active {
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  /* Individuell timing för varje länk */
+  .navbar-links .navbar-link:nth-child(1) {
+    animation: slideInUp 0.6s ease-out 0.1s both;
+  }
+  
+  .navbar-links .navbar-link:nth-child(2) {
+    animation: slideInUp 0.6s ease-out 0.2s both;
+  }
+  
+  .navbar-links .navbar-link:nth-child(3) {
+    animation: slideInUp 0.6s ease-out 0.3s both;
+  }
+  
+  .navbar-links .navbar-link:nth-child(4) {
+    animation: slideInUp 0.6s ease-out 0.4s both;
+  }
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
   
   .hamburger {
