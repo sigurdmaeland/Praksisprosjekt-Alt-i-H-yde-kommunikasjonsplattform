@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import OmOss from './pages/OmOss'
+import Status from './pages/Status'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -16,8 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/omoss" element={<OmOss />} />
-        <Route path="/status1" element={<div>Status 1 - Under utvikling</div>} />
-        <Route path="/status2" element={<div>Status 2 - Under utvikling</div>} />
+        <Route path="/status" element={<Status />} />
       </Routes>
       <Footer />
     </>

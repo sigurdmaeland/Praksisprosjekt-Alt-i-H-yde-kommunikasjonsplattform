@@ -18,8 +18,7 @@ const Navbar = () => {
 			<div className={`navbar-links${menuOpen ? ' open' : ''}`}> 
 				<Link to="/" className="navbar-link" onClick={closeMenu} style={{fontWeight: location.pathname === '/' ? 'bold' : 500}}>Hjem</Link>
 				<Link to="/omoss" className="navbar-link" onClick={closeMenu} style={{fontWeight: location.pathname === '/omoss' ? 'bold' : 500}}>Om oss</Link>
-				<Link to="/status1" className="navbar-link" onClick={closeMenu} style={{fontWeight: location.pathname === '/status1' ? 'bold' : 500}}>Status 1</Link>
-				<Link to="/status2" className="navbar-link" onClick={closeMenu} style={{fontWeight: location.pathname === '/status2' ? 'bold' : 500}}>Status 2</Link>
+				<Link to="/status" className="navbar-link" onClick={closeMenu} style={{fontWeight: location.pathname === '/status1' ? 'bold' : 500}}>Status</Link>
 			</div>
 			<div className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={handleHamburger} aria-label="Toggle menu" tabIndex={0} role="button">
 				<span></span>
