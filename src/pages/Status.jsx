@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
 import '../css/status.css';
 
-const API_URL = 'http://localhost:4000/api/status';
+const SUPABASE_URL = 'https://sbolhmfhslbwnqpqblfu.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNib2xobWZoc2xid25xcHFibGZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5ODEyODYsImV4cCI6MjA3MjU1NzI4Nn0.iYAVhXuJBd8CNrarQxTRdmWAjd9wdumUqxJiwMVBEnM';
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const categories = ['Alle', 'UX', 'Design', 'Backend', 'Møter', 'Planlegging'];
 
@@ -18,26 +21,33 @@ const Status = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-	// Hent statuskort fra backend
-	useEffect(() => {
+	// Hent statuskort fra Supabase
+	const fetchStatusUpdates = () => {
 		setLoading(true);
-		fetch(API_URL)
-			.then((res) => res.json())
-			.then((data) => {
-				setUpdates(data);
-				setLoading(false);
-			})
-			.catch(() => {
-				setError('Kunne ikke hente statuskort.');
-				setLoading(false);
+		supabase
+			.from('status')
+			.select('*')
+			.order('id', { ascending: false })
+			.then(({ data, error }) => {
+				if (error) {
+					setError('Kunne ikke hente statuskort.');
+					setLoading(false);
+				} else {
+					setUpdates(data);
+					setLoading(false);
+				}
 			});
+	};
+
+	useEffect(() => {
+		fetchStatusUpdates();
 	}, []);
 
 	const filteredUpdates =
 		selectedCategory === 'Alle'
 			? updates
 			: updates.filter((update) =>
-				update.categories.map((c) => c.toLowerCase()).includes(selectedCategory.toLowerCase())
+				(update.categories || '').toLowerCase().includes(selectedCategory.toLowerCase())
 			);
 
 	const handleToggle = (id) => {
@@ -53,21 +63,15 @@ const Status = () => {
 		e.preventDefault();
 		if (!form.title.trim() || !form.category.trim() || !form.description.trim()) return;
 		const newUpdate = {
-			date: new Date().toLocaleDateString('no-NO'),
+			date: new Date().toISOString().slice(0, 10),
 			title: form.title,
-			categories: [form.category],
-			summary: form.title,
+			categories: form.category,
 			details: form.description,
 		};
 		try {
-			const res = await fetch(API_URL, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(newUpdate),
-			});
-			if (!res.ok) throw new Error('Kunne ikke lagre.');
-			const saved = await res.json();
-			setUpdates((prev) => [saved, ...prev]);
+			const { error } = await supabase.from('status').insert([newUpdate]);
+			if (error) throw error;
+			fetchStatusUpdates();
 			setShowForm(false);
 			setForm({ category: categories[1], title: '', description: '' });
 		} catch {
@@ -209,24 +213,35 @@ const Status = () => {
 				) : (
 					<div className="status-updates">
 						{filteredUpdates.map((update) => (
-							<div className="status-update-section" key={update.id}>
+							<div
+								className={`status-update-section${expanded[update.id] ? ' expanded' : ''}`}
+								key={update.id}
+								style={{ transition: 'min-height 0.3s, box-shadow 0.2s', minHeight: expanded[update.id] ? 180 : 120 }}
+							>
 								<div className="status-card-header">
 									<div className="status-tags">
-										{update.categories.map((cat) => (
-											<span className="status-tag" key={cat}>{cat}</span>
-										))}
+										{Array.isArray(update.categories)
+											? update.categories.map((cat) => (
+													<span className="status-tag" key={cat}>{cat}</span>
+												))
+											: update.categories
+												? <span className="status-tag">{update.categories}</span>
+												: null}
 									</div>
 									<span className="status-date">{update.date}</span>
 								</div>
 								<h3>{update.title}</h3>
-								<p>{update.summary}</p>
 								{update.details && (
-									<button className="status-showmore" onClick={() => handleToggle(update.id)}>
+									<button
+										className="status-showmore"
+										onClick={() => handleToggle(update.id)}
+										style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}
+									>
 										{expanded[update.id] ? 'Vis mindre' : 'Vis mer'}
 									</button>
 								)}
-								{expanded[update.id] && (
-									<div style={{marginTop:'0.5rem',color:'#23272f'}}>{update.details}</div>
+								{expanded[update.id] && update.details && (
+									<div style={{marginTop:'0.5rem',color:'#23272f',whiteSpace:'pre-line'}}>{update.details}</div>
 								)}
 							</div>
 						))}
