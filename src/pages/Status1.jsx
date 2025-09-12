@@ -19,13 +19,15 @@ const Status1 = () => (
                 Alt i Høyde AS er en bedrift som jobber med oppdrag i høyden. De bruker industriklatrere til å gjøre jobber som kan være vanskelige å nå med lift eller stillas. Typiske oppdrag er å vaske fasader og vinduer, male, gjøre små reparasjoner og fjerne snø og is fra tak. Alt I Høyde driver også med kurs og opplæring innenfor arbeid i høyden. De holder til i både Norge og Sverige, med hovedkontor i Kristiansand og Gøteborg.
               </p>
             </div>
-            <div style={{marginTop: '0.5rem', textAlign: 'center'}}>
-              <h4 style={{color: '#2C5282', fontSize: '1.13rem', fontWeight: 600, marginBottom: '0.7rem', letterSpacing: '0.01em'}}>Videoklipp fra bedriften</h4>
-              <video width="480" height="280" controls style={{borderRadius: '1.2rem', boxShadow: '0 4px 18px rgba(44,82,130,0.13)', background:'#000'}}>
-                <source src="/eksempel-video.mp4" type="video/mp4" />
-                Din nettleser støtter ikke video.
-              </video>
-            </div>
+            <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'center' }}>
+  <div style={{ width: '100%', maxWidth: window.innerWidth <= 480 ? 280 : window.innerWidth <= 900 ? 480 : 800, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <h4 style={{ color: '#2C5282', fontWeight: 600, marginBottom: '0.7rem', letterSpacing: '0.01em', fontSize: window.innerWidth <= 480 ? '1rem' : window.innerWidth <= 900 ? '1.13rem' : '1.25rem', textAlign: 'center' }}>Videoklipp fra bedriften</h4>
+    <video controls style={{ width: '100%', height: 'auto', borderRadius: window.innerWidth <= 480 ? '0.6rem' : '1rem', border: '2.5px solid #2C5282', boxShadow: '0 2px 12px rgba(44,82,130,0.10)', background: '#000', display: 'block' }}>
+      <source src="/altihøydevideo.mp4" type="video/mp4" />
+      Din nettleser støtter ikke video.
+    </video>
+  </div>
+</div>
           </div>
           <div className="person-card" style={{minHeight:'180px', transition: 'none', boxShadow: '0 8px 32px rgba(44, 82, 130, 0.12)', transform: 'none'}}>
             <h3 className="person-name">Våre arbeidsoppgaver</h3>
