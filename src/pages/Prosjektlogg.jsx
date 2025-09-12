@@ -1,3 +1,4 @@
+// Kopi av tidligere Status.jsx, nå Prosjektlogg.jsx
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import '../css/status.css';
@@ -8,7 +9,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const categories = ['Alle', 'UX', 'Design', 'Backend', 'Møter', 'Planlegging'];
 
-const Status = () => {
+const Prosjektlogg = () => {
 	const [selectedCategory, setSelectedCategory] = useState('Alle');
 	const [expanded, setExpanded] = useState({});
 	const [updates, setUpdates] = useState([]);
@@ -21,7 +22,7 @@ const Status = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-	// Hent statuskort fra Supabase
+	// Hent prosjektlogg-oppføringer fra Supabase
 	const fetchStatusUpdates = () => {
 		setLoading(true);
 		supabase
@@ -82,7 +83,7 @@ const Status = () => {
 	return (
 		<div className="status-bg">
 			<div className="status-container">
-				<h2 className="status-title">Status</h2>
+				<h2 className="status-title">Prosjektlogg</h2>
 				{error && <div style={{color:'#c00',marginBottom:'1rem'}}>{error}</div>}
 
 				{/* Kategori-filter */}
@@ -118,7 +119,7 @@ const Status = () => {
 							}}
 							onClick={() => setShowForm(true)}
 						>
-							<span style={{fontSize:'1.2em',fontWeight:800}}>+</span> Nytt innlegg
+							<span style={{fontSize:'1.2em',fontWeight:800}}>+</span> Ny logg
 						</button>
 					</div>
 				)}
@@ -207,9 +208,9 @@ const Status = () => {
 					</form>
 				)}
 				{loading ? (
-					<div style={{textAlign:'center',color:'#888',marginTop:'2rem'}}>Laster statuskort...</div>
+					<div style={{textAlign:'center',color:'#888',marginTop:'2rem'}}>Laster logg...</div>
 				) : filteredUpdates.length === 0 ? (
-					<div className="status-no-updates">Ingen statuskort enda.</div>
+					<div className="status-no-updates">Ingen logg enda.</div>
 				) : (
 					<div className="status-updates">
 						{filteredUpdates.map((update) => (
@@ -222,8 +223,8 @@ const Status = () => {
 									<div className="status-tags">
 										{Array.isArray(update.categories)
 											? update.categories.map((cat) => (
-													<span className="status-tag" key={cat}>{cat}</span>
-												))
+												<span className="status-tag" key={cat}>{cat}</span>
+											))
 											: update.categories
 												? <span className="status-tag">{update.categories}</span>
 												: null}
@@ -252,4 +253,4 @@ const Status = () => {
 	);
 };
 
-export default Status;
+export default Prosjektlogg;
