@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import OmOss from './pages/OmOss'
-import Prosjektlogg from './pages/Prosjektlogg';
 import Status1 from './pages/Status1';
 import Status2 from './pages/Status2';
 import Navbar from './components/Navbar'
@@ -19,7 +18,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/omoss" element={<OmOss />} />
-        <Route path="/prosjektlogg" element={<Prosjektlogg />} />
         <Route path="/status1" element={<Status1 />} />
         <Route path="/status2" element={<Status2 />} />
       </Routes>

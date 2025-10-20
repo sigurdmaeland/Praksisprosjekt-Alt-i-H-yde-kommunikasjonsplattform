@@ -14,7 +14,7 @@ const OmOss = () => {
     {
       name: "Ole Bjørk Olsen", // Endre dette
       age: 22,
-      background: "Erfaring med React, JavaScript, og frontend utvikling. Har jobbet med flere web-prosjekter og har solid bakgrunn innen moderne frontend-teknologier.",
+      background: "Erfaring med programmering i ulike språk fra tidligere skoleprosjekter, samt grunnleggende kunnskap om generell teknologi.",
       image: "/ole.png", // Du må legge til dette bildet
       linkedin: "https://www.linkedin.com/in/ole-bj%C3%B8rk-olsen-10a034365/",
       github: "https://github.com/oleols1"
@@ -22,7 +22,7 @@ const OmOss = () => {
     {
       name: "Jonas Løvik Jørgensen", // Endre dette
       age: 24,
-      background: "Erfaring med backend utvikling, spesielt med Node.js og Express. Har jobbet med flere API-prosjekter.",
+      background: "Erfaring fra tidligere skoleprosjekter, webutvikling og grunleggende programmering. Har jobbet med både front-end og back-end i ulike prosjekter.",
       image: "/jonas.png", // Du må legge til dette bildet
       linkedin: "https://www.linkedin.com/in/jonas-løvik-jørgensen-b1b013362/",
       github: "https://github.com/JonasLovik"
@@ -58,7 +58,7 @@ const OmOss = () => {
                 <p className="person-age">{member.age} år</p>
                 
                 <div className="person-background">
-                  <h4 className="background-title">Kodebakgrunn</h4>
+                  <h4 className="background-title">Bakgrunn</h4>
                   <p className="background-text">{member.background}</p>
                 </div>
                 
